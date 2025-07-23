@@ -22,6 +22,7 @@ function startListening() {
   recognition.lang = "en-US";
   recognition.onresult = (e) => {
     const voiceInput = e.results[0][0].transcript;
+    console.log("Sending query...");
     sendQuery(voiceInput);
   };
   recognition.start();
