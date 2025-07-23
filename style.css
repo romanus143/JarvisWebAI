@@ -1,0 +1,35 @@
+/* style.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+}
+
+#chat-container {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ccc;
+  max-width: 600px;
+  margin: auto;
+}
+
+textarea {
+  width: 90%;
+  height: 80px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 16px;
+}
+
+#response {
+  margin-top: 20px;
+  white-space: pre-wrap;
+}
