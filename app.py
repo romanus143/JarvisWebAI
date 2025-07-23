@@ -1,7 +1,7 @@
 # app.py
 
 from flask import Flask, request, jsonify
-from jarvis import JarvisCore
+from jarvis import JarvisCore  # assuming jarvis.py is in the same folder
 
 app = Flask(__name__)
 jarvis = JarvisCore()
