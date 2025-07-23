@@ -1,18 +1,29 @@
 async function sendQuery(input = null) {
-  console.log("Sending query...");  // Confirm function runs
+  console.log("Sending query...");
 
   const query = input || document.getElementById("query").value;
+  if (!query.trim()) {
+    document.getElementById("response").innerText = "Please enter a question.";
+    return;
+  }
 
-  const res = await fetch("https://jarviswebai.onrender.com/ask", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query: query })
-  });
+  try {
+    const res = await fetch("https://jarviswebai.onrender.com/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: query })
+    });
 
-  const data = await res.json();
-  console.log("Raw response:", data);  // Log backend reply
-  document.getElementById("response").innerText = data.response || "No response received.";
-  speak(data.response);
+    const data = await res.json();
+    console.log("Raw response:", data);
+
+    const reply = data.response || "No response received.";
+    document.getElementById("response").innerText = reply;
+    speak(reply);
+  } catch (err) {
+    console.error("Error:", err);
+    document.getElementById("response").innerText = "⚠️ Something went wrong while contacting Baba.";
+  }
 }
 
 function speak(text) {
@@ -39,9 +50,17 @@ function speak(text) {
 function startListening() {
   const recognition = new webkitSpeechRecognition();
   recognition.lang = "en-US";
-  recognition.onresult = (e) => {
-    const voiceInput = e.results[0][0].transcript;
+
+  recognition.onresult = (event) => {
+    const voiceInput = event.results[0][0].transcript;
+    document.getElementById("query").value = voiceInput;
     sendQuery(voiceInput);
   };
+
+  recognition.onerror = (event) => {
+    console.error("Speech recognition error:", event.error);
+    document.getElementById("response").innerText = "⚠️ Voice input failed. Try typing your question.";
+  };
+
   recognition.start();
 }
