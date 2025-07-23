@@ -1,11 +1,9 @@
-# jarvis.py
-
 from datetime import datetime
 import json
 import os
+from transformers import pipeline
 
-# 🧠 Jarvis Core Brain (optimized)
-class JarvisCore:
+class BabaCore:
     def __init__(self, style="formal"):
         self.style = style
         self.memory_path = "memory.json"
@@ -28,7 +26,6 @@ class JarvisCore:
         self._save_memory()
 
     def _generate_lesson(self, topic):
-        from transformers import pipeline
         lesson_generator = pipeline("text2text-generation", model="google/flan-t5-base")
 
         tone_instructions = {
@@ -36,17 +33,20 @@ class JarvisCore:
             "casual": "Explain like you're chatting with a curious student.",
             "analogy": "Use fun real-life analogies to explain the topic."
         }
+
         prompt = (
-            f"Act as an experienced tutor. Explain the topic: '{topic}'\n"
+            f"You are Baba, a warm and witty tutor who adapts to every learner's style.\n"
+            f"Topic: '{topic}'\n"
             f"{tone_instructions.get(self.style, 'Use clear language.')}\n"
-            "Include warm-up, examples, simple quiz, and summary."
+            "Start with an engaging warm-up, then explain using scaffolding and analogies.\n"
+            "Include examples, a mini quiz, and summarize with a motivational close."
         )
+
         result = lesson_generator(prompt, max_new_tokens=512, do_sample=False)
         self._update_memory(topic)
         return result[0]["generated_text"]
 
     def _summarize_topic(self, topic):
-        from transformers import pipeline
         summarizer = pipeline("summarization")
         summary = summarizer(f"The topic is: {topic}", max_length=100, min_length=30, do_sample=False)
         return summary[0]["summary_text"]
@@ -54,20 +54,16 @@ class JarvisCore:
     def respond(self, query):
         query_lower = query.lower()
 
-        # 🕒 Time Handling
         if "time" in query_lower:
             now = datetime.now()
             return f"It’s {now.strftime('%I:%M %p on %A, %B %d, %Y')}."
 
-        # 🧑‍🏫 Lesson Style Teaching
         if any(kw in query_lower for kw in ["teach", "lesson", "explain", "how", "what is", "help me understand"]):
             return self._generate_lesson(query)
 
-        # 🔍 General Summary
         if any(kw in query_lower for kw in ["history", "describe", "benefits of", "why"]):
             return self._summarize_topic(query)
 
-        # 🔄 Confusion Handling
         if any(kw in query_lower for kw in ["confusing", "didn’t make sense", "explain better"]):
             if self.last_topic:
                 new_explanation = self._generate_lesson(self.last_topic)
