@@ -3,29 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ask Baba — Your Wise AI Tutor</title>
+  <title>Ask Baba — The Wise AI Tutor</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="container">
-    <header>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Wizard_icon.svg/120px-Wizard_icon.svg.png" alt="Baba Avatar" class="avatar" />
+  <div class="main">
+    <header class="hero">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Wizard_icon.svg/120px-Wizard_icon.svg.png" alt="Baba" class="glowing-avatar" />
       <h1>🧙 Ask Baba</h1>
-      <p class="tagline">Your wise and witty mentor awaits your question</p>
+      <p class="tagline">A tutor with charm, wisdom, and a glowing orb</p>
     </header>
 
-    <main>
+    <section class="interaction">
       <input id="query" type="text" placeholder="Ask Baba a question..." />
-      <div class="button-row">
+      <div class="buttons">
         <button onclick="sendQuery()">🎯 Send</button>
         <button onclick="startListening()">🎙️ Speak</button>
       </div>
-
+      <div id="loading" class="dots" style="display:none;">✨ Baba is thinking...</div>
       <div id="response" class="response-box">Your answer will appear here...</div>
-    </main>
+    </section>
 
     <footer>
-      <p class="footer">🧠 Powered by BabaCore | ✨ Designed for curious minds</p>
+      <p>✨ Created for curious minds by BabaCore</p>
     </footer>
   </div>
 
