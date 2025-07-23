@@ -3,48 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Baba — AI Tutor</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 30px;
-      text-align: center;
-    }
-    h1 {
-      color: #333;
-    }
-    #query {
-      width: 80%;
-      padding: 10px;
-      margin-bottom: 10px;
-      font-size: 1rem;
-    }
-    button {
-      padding: 10px 15px;
-      margin: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    #response {
-      margin-top: 20px;
-      padding: 20px;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      white-space: pre-wrap;
-      font-size: 1.1rem;
-    }
-  </style>
+  <title>Ask Baba — Your Wise AI Tutor</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>🧙‍♂️ Ask Baba Anything</h1>
-  <input id="query" type="text" placeholder="Ask Baba a question..." />
-  <br />
-  <button onclick="sendQuery()">Send</button>
-  <button onclick="startListening()">🎙️ Speak</button>
+  <div class="container">
+    <header>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Wizard_icon.svg/120px-Wizard_icon.svg.png" alt="Baba Avatar" class="avatar" />
+      <h1>🧙 Ask Baba</h1>
+      <p class="tagline">Your wise and witty mentor awaits your question</p>
+    </header>
 
-  <div id="response">Your answer will appear here...</div>
+    <main>
+      <input id="query" type="text" placeholder="Ask Baba a question..." />
+      <div class="button-row">
+        <button onclick="sendQuery()">🎯 Send</button>
+        <button onclick="startListening()">🎙️ Speak</button>
+      </div>
+
+      <div id="response" class="response-box">Your answer will appear here...</div>
+    </main>
+
+    <footer>
+      <p class="footer">🧠 Powered by BabaCore | ✨ Designed for curious minds</p>
+    </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>
