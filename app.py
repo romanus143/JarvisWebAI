@@ -1,10 +1,10 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from jarvis import JarvisCore  # Assuming jarvis.py is in the same folder
+from jarvis import JarvisCore
 import os
 
 app = Flask(__name__)
-CORS(app)  # ✅ Allows cross-origin requests from Netlify frontend
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
 jarvis = JarvisCore()
 
