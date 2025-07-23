@@ -26,3 +26,21 @@ function startListening() {
   };
   recognition.start();
 }
+function speak(text) {
+  const synth = window.speechSynthesis;
+  const utter = new SpeechSynthesisUtterance(text);
+
+  // Ensure voices are loaded before selecting one
+  const loadVoices = () => {
+    const voices = synth.getVoices();
+    if (voices.length > 0) {
+      // Prefer US English voice, fallback to first available
+      utter.voice = voices.find(v => v.lang === "en-US") || voices[0];
+      synth.speak(utter);
+    } else {
+      setTimeout(loadVoices, 100);
+    }
+  };
+
+  loadVoices();
+}
