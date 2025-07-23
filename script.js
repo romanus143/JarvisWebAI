@@ -1,5 +1,7 @@
 // script.js
 async function sendQuery(input = null) {
+  console.log("Sending query...");  // Add this line
+
   const query = input || document.getElementById("query").value;
   const res = await fetch("https://jarviswebai.onrender.com/ask", {
     method: "POST",
@@ -7,8 +9,10 @@ async function sendQuery(input = null) {
     body: JSON.stringify({ query: query })
   });
   const data = await res.json();
-  document.getElementById("response").innerText = data.response;
+  console.log("Raw response:", data);  // Add this too
+  document.getElementById("response").innerText = data.response || "No response received.";
   speak(data.response);
+}
 }
 
 function speak(text) {
