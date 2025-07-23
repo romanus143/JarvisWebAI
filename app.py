@@ -17,9 +17,14 @@ def welcome():
 @app.route("/ask", methods=["POST"])
 def ask_jarvis():
     data = request.get_json()
-    query = data.get("query", "")
-    response = jarvis.respond(query)
-    return jsonify({"response": response})
+    query = data.get("query", "").strip()
+    
+    if not query:
+        return jsonify({ "response": "Please enter a question." })
+    
+    reply = jarvis.respond(query)
+    return jsonify({ "response": reply or "Jarvis didn't return anything." })
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
