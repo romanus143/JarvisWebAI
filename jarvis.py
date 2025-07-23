@@ -1,28 +1,22 @@
 # jarvis.py
 
-from transformers import pipeline
 from datetime import datetime
 import json
 import os
 
-# 🌐 Shared AI Pipelines
-lesson_generator = pipeline("text2text-generation", model="google/flan-t5-base")
-summarizer = pipeline("summarization")
-
-# 🧠 Jarvis Core Brain
+# 🧠 Jarvis Core Brain (optimized)
 class JarvisCore:
     def __init__(self, style="formal"):
         self.style = style
         self.memory_path = "memory.json"
         self.last_topic = None
+        self.memory = {}
         self._load_memory()
 
     def _load_memory(self):
         if os.path.exists(self.memory_path):
             with open(self.memory_path, "r") as f:
                 self.memory = json.load(f)
-        else:
-            self.memory = {}
 
     def _save_memory(self):
         with open(self.memory_path, "w") as f:
@@ -34,6 +28,9 @@ class JarvisCore:
         self._save_memory()
 
     def _generate_lesson(self, topic):
+        from transformers import pipeline
+        lesson_generator = pipeline("text2text-generation", model="google/flan-t5-base")
+
         tone_instructions = {
             "formal": "Use clear academic language.",
             "casual": "Explain like you're chatting with a curious student.",
@@ -49,6 +46,8 @@ class JarvisCore:
         return result[0]["generated_text"]
 
     def _summarize_topic(self, topic):
+        from transformers import pipeline
+        summarizer = pipeline("summarization")
         summary = summarizer(f"The topic is: {topic}", max_length=100, min_length=30, do_sample=False)
         return summary[0]["summary_text"]
 
@@ -76,7 +75,6 @@ class JarvisCore:
             else:
                 return "I’m not sure what you were referring to — could you repeat the topic?"
 
-        # 🧠 Default Response
         return "I’m still learning — can you rephrase or ask me to teach something specific?"
 
     def set_style(self, style):
