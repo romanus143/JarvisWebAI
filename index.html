@@ -1,19 +1,51 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Jarvis Web AI</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baba — AI Tutor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 30px;
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    #query {
+      width: 80%;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    #response {
+      margin-top: 20px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      white-space: pre-wrap;
+      font-size: 1.1rem;
+    }
+  </style>
 </head>
 <body>
-  <h1>Jarvis Web Assistant</h1>
-  <div id="chat-container">
-    <textarea id="query" placeholder="Ask Jarvis something..."></textarea>
-    <button onclick="sendQuery()">Send</button>
-    <button onclick="startListening()">🎙️ Speak</button>
-    <div id="response"></div>
-  </div>
+  <h1>🧙‍♂️ Ask Baba Anything</h1>
+  <input id="query" type="text" placeholder="Ask Baba a question..." />
+  <br />
+  <button onclick="sendQuery()">Send</button>
+  <button onclick="startListening()">🎙️ Speak</button>
+
+  <div id="response">Your answer will appear here...</div>
+
   <script src="script.js"></script>
 </body>
 </html>
