@@ -1,4 +1,6 @@
 # app.py
+from flask_cors import CORS
+CORS(app)
 
 from flask import Flask, request, jsonify
 from jarvis import JarvisCore  # assuming jarvis.py is in the same folder
