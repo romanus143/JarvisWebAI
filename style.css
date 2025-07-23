@@ -1,35 +1,71 @@
-/* style.css */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f1f1f1;
-  padding: 20px;
+  margin: 0;
+  font-family: "Georgia", serif;
+  background: linear-gradient(to bottom, #fdf6e3, #f2e8c9);
+  color: #3b2f2f;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 40px 20px;
   text-align: center;
 }
 
-#chat-container {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #ccc;
-  max-width: 600px;
-  margin: auto;
-}
-
-textarea {
-  width: 90%;
-  height: 80px;
-  padding: 10px;
+header .avatar {
+  width: 80px;
+  border-radius: 50%;
   margin-bottom: 10px;
-  font-size: 16px;
 }
 
-button {
-  padding: 10px 20px;
-  margin: 5px;
-  font-size: 16px;
+h1 {
+  font-size: 2.5rem;
+  margin: 10px 0;
 }
 
-#response {
-  margin-top: 20px;
+.tagline {
+  font-style: italic;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+input#query {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1rem;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.button-row button {
+  padding: 10px 15px;
+  font-size: 1rem;
+  margin: 0 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #826c4c;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.button-row button:hover {
+  background-color: #4d3a24;
+}
+
+.response-box {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #ffffffcc;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
   white-space: pre-wrap;
+  font-size: 1.1rem;
+}
+
+.footer {
+  margin-top: 50px;
+  font-size: 0.9rem;
+  color: #6f5b3d;
 }
